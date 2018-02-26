@@ -23,17 +23,17 @@ unsigned char DHT_Read(unsigned char select)
 	// Initialization
 	set_bit(DHT_DDR,DHT_PIN);
 	set_bit(DHT_PORT,DHT_PIN);
-	_delay_ms(1000); // To Prevent Error Reads
+	_delay_ms(100); // To Prevent Error Reads
 
 	// Enable
 	clear_bit(DHT_PORT,DHT_PIN);
-	_delay_ms(18);
+	_delay_ms(20);
 	set_bit(DHT_PORT,DHT_PIN);
 	_delay_us(1);
 
 	// Input Pin to Receive
 	clear_bit(DHT_DDR,DHT_PIN);
-	_delay_us(10);
+	_delay_us(39);
 
 	// Make Sure that MC received LOW Signal
 	if(read_bit(DHT_INPUTPIN,DHT_PIN)) return 255;
@@ -60,7 +60,7 @@ unsigned char DHT_Read(unsigned char select)
 	// Reset
 	set_bit(DHT_DDR,DHT_PIN);
 	set_bit(DHT_PORT,DHT_PIN);
-	_delay_ms(1000); // To Prevent Error Reads
+	_delay_ms(100); // To Prevent Error Reads
 
 	//check checksum
 	if (data[0] + data[1] + data[2] + data[3] == data[4])
